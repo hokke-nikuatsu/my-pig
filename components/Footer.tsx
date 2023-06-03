@@ -21,6 +21,9 @@ export const FooterImpl: React.FC = () => {
   const [hasMounted, setHasMounted] = React.useState(false)
   const { isDarkMode, toggleDarkMode } = useDarkMode()
 
+  const now = new Date()
+  const fullYear = now.getFullYear()
+
   const onToggleDarkMode = React.useCallback(
     (e) => {
       e.preventDefault()
@@ -35,8 +38,6 @@ export const FooterImpl: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>Copyright 2022 {config.author}</div>
-
       <div className={styles.settings}>
         {hasMounted && (
           <a
@@ -49,6 +50,10 @@ export const FooterImpl: React.FC = () => {
             {isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
           </a>
         )}
+      </div>
+
+      <div className={styles.copyright}>
+        Copyright {fullYear} {config.author}
       </div>
 
       <div className={styles.social}>
