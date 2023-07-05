@@ -10,14 +10,14 @@ export default class MyDocument extends Document {
         <Html lang='en'>
           <Head>
             <link rel='shortcut icon' href='/favicon.ico' />
+            <link rel='apple-touch-icon' href='apple-touch-icon.png' />
             <link
-              rel='icon'
-              type='image/png'
-              sizes='32x32'
-              href='favicon.png'
+              rel='apple-touch-icon-precomposed'
+              href='apple-touch-icon.png'
             />
-
-            <link rel='manifest' href='/manifest.json' />
+            <link rel='mask-icon' sizes='any' href='favicon.svg' />
+            <link rel='icon' type='image/png' href='favicon.png' />
+            <link rel='icon' type='image/svg+xml' href='favicon.svg' />
           </Head>
 
           <body>
