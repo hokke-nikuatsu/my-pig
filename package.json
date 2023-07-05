@@ -10,6 +10,7 @@
     "node": ">=16"
   },
   "scripts": {
+    "lint": "yarn tsc; eslint --ext .ts,.js lib",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
