@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import cs from 'classnames'
+import { format } from 'date-fns'
 import { PageBlock } from 'notion-types'
-import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
+import { getBlockTitle, getPageProperty } from 'notion-utils'
 import BodyClassName from 'react-body-classname'
 import { NotionRenderer } from 'react-notion-x'
 import TweetEmbed from 'react-tweet-embed'
@@ -100,31 +101,23 @@ const Tweet = ({ id }: { id: string }) => {
   return <TweetEmbed tweetId={id} />
 }
 
-const propertyLastEditedTimeValue = (
-  { block, pageHeader },
-  defaultFn: () => React.ReactNode
-) => {
-  if (pageHeader && block?.last_edited_time) {
-    return `Last updated ${formatDate(block?.last_edited_time, {
-      month: 'long'
-    })}`
-  }
-
-  return defaultFn()
-}
-
 const propertyDateValue = (
-  { data, schema, pageHeader },
+  { data, schema, pageHeader, block },
   defaultFn: () => React.ReactNode
 ) => {
   if (pageHeader && schema?.name?.toLowerCase() === 'published') {
-    const publishDate = data?.[0]?.[1]?.[0]?.[1]?.start_date
+    const publishedDate = data?.[0]?.[1]?.[0]?.[1]?.start_date
+    const updatedDate = block?.last_edited_time
+    const formattedUpdatedDate = format(updatedDate, 'yyyy-MM-dd')
 
-    if (publishDate) {
-      return `${formatDate(publishDate, {
-        month: 'long'
-      })}`
-    }
+    return (
+      <div className={styles.date}>
+        <div>{publishedDate && <>Posted on {publishedDate}</>}</div>
+        <div>
+          {formattedUpdatedDate && <>Updated on {formattedUpdatedDate}</>}
+        </div>
+      </div>
+    )
   }
 
   return defaultFn()
@@ -161,7 +154,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
       Modal,
       Tweet,
       Header: NotionPageHeader,
-      propertyLastEditedTimeValue,
       propertyTextValue,
       propertyDateValue
     }),
@@ -216,7 +208,8 @@ export const NotionPage: React.FC<types.PageProps> = ({
     title,
     pageId,
     rootNotionPageId: site.rootNotionPageId,
-    recordMap
+    recordMap,
+    block
   })
 
   if (!config.isServer) {
