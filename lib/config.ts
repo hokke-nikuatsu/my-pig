@@ -90,7 +90,7 @@ export const defaultPageCoverPosition: number = getSiteConfig(
 // Optional whether or not to enable support for LQIP preview images
 export const isPreviewImageSupportEnabled: boolean = getSiteConfig(
   'isPreviewImageSupportEnabled',
-  false
+  true
 )
 
 // Optional whether or not to include the Notion ID in page URLs or just use slugs
