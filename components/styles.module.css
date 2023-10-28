@@ -213,3 +213,7 @@
 .hidden {
   visibility: hidden;
 }
+
+.date {
+  text-align: center;
+}
