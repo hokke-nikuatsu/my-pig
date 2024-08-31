@@ -42,7 +42,7 @@
     "notion-client": "^6.15.6",
     "notion-types": "^6.16.0",
     "notion-utils": "^6.16.0",
-    "p-map": "^6.0.0",
+    "p-map": "^7.0.2",
     "p-memoize": "^7.1.1",
     "patch-package": "^8.0.0",
     "posthog-js": "^1.84.1",
