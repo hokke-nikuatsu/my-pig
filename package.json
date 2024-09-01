@@ -24,7 +24,8 @@
     "test": "npm-run-all test:*",
     "test:lint": "eslint '**/*.{ts,tsx}'",
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "upgrade-interactive": "npm-check --update"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",
