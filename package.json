@@ -10,18 +10,18 @@
     "node": ">=20.17.0"
   },
   "scripts": {
-    "lint": "yarn tsc; eslint --ext .ts,.js lib",
+    "lint": "npm run tsc; eslint --ext .ts,.js lib",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "deploy": "vercel deploy",
-    "deps": "run-s deps:*",
-    "deps:update": "[ -z $GITHUB_ACTIONS ] && yarn add notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
-    "deps:link": "[ -z $GITHUB_ACTIONS ] && yarn link notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:link on CI'",
+    "deps": "npm-run-all deps:*",
+    "deps:update": "[ -z $GITHUB_ACTIONS ] && npm install notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
+    "deps:link": "[ -z $GITHUB_ACTIONS ] && npm link notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:link on CI'",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
-    "test": "run-p test:*",
+    "test": "npm-run-all test:*",
     "test:lint": "eslint '**/*.{ts,tsx}'",
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
     "postinstall": "patch-package"
