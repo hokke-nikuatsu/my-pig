@@ -94,6 +94,7 @@
 code[class*='language-'],
 pre[class*='language-'] {
   color: rgba(31, 41, 55, 1);
+  margin-bottom: -0.25em;
 }
 .dark-mode code[class*='language-'],
 .dark-mode pre[class*='language-'] {
